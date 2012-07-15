@@ -140,24 +140,14 @@ error:
     return err;
 }
 
-/*int main(void)
+void fillNotes(int *notePitch, int *timeSig, int noteCount)
 {
+    int i;
     buzzer_start();
-    buzzer_set_freq(400);
-    sleep(1);
-    buzzer_set_freq(0);
-    sleep(1);
-    buzzer_set_freq(500);
-    sleep(1);
-    buzzer_set_freq(600);
-    sleep(1);
-    buzzer_set_freq(700);
-    sleep(1);
-    buzzer_beep(2000, 500);
-    sleep(2);
-
+    for (i = 0; i < noteCount; i++) {
+	    buzzer_set_freq(*(notePitch + i));
+	    sleep(*(timeSig + i));
+    }
     buzzer_stop();
-
-    return 0;
-}*/
+}
 

@@ -2,22 +2,10 @@
 
 int main(void)
 {
-    buzzer_start();
-    buzzer_set_freq(400);
-    sleep(1);
-    buzzer_set_freq(0);
-    sleep(1);
-    buzzer_set_freq(500);
-    sleep(1);
-    buzzer_set_freq(600);
-    sleep(1);
-    buzzer_set_freq(700);
-    sleep(1);
-    buzzer_beep(2000, 500);
-    sleep(2);
-
-    buzzer_stop();
-
+    int notePitch[4] = {100, 150, 75, 125};
+    int noteLength[4] = {1, 1, 1, 2};
+    int noteCount = sizeof(notePitch) / sizeof(int);
+    fillNotes(&notePitch[0], &noteLength[0], noteCount);
     return 0;
 }
 
