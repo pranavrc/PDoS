@@ -5,6 +5,9 @@
 #include <math.h>
 #include "portaudio.h"
 #include <stdint.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <time.h>
 
 #define SAMPLE_RATE   (44100)
 #define FRAMES_PER_BUFFER  (64)
@@ -23,6 +26,6 @@ int buzzer_start(void);
 
 int buzzer_stop();
 
-void fillNotes(int *notePitch, int *timeSig, int noteCount);
+void fillNotes(int *notePitch);
 
 #endif

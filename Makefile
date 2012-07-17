@@ -1,5 +1,6 @@
 CFLAGS = -Wall -g
 all:
-	cc generate.c -o generate generateSine.h -lportaudio
+	cc sample.c -o sample generateSine.h -lportaudio
+	cc fib.c -o fib generateSine.h -lportaudio
 clean:
-	rm -f generate
+	rm -f sample fib

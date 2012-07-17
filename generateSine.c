@@ -140,14 +140,27 @@ error:
     return err;
 }
 
-void fillNotes(int *notePitch, int *timeSig, int noteCount)
+void fillNotes(int *notePitch)
 {
-    int i;
+    int counter; 
+    int numberofBars;
+    srand(time(NULL));
+    int barLength = 2 * (rand() % 4 + 1);
+    int halfBar = barLength / 2;
+    float beatOne = (float)rand() / ((float)RAND_MAX/halfBar);
+    float beatTwo = halfBar - beatOne;
+    float beatThree = (float)rand() / ((float)RAND_MAX/halfBar);
+    float beatFour = halfBar - beatThree;
+    printf("%d, %f, %f, %f, %f", barLength, beatOne, beatTwo, beatThree, beatFour);
+    float noteLength[4] = {beatOne, beatTwo, beatThree, beatFour};
+    int noteCount = sizeof(noteLength) / sizeof(int);
+
     buzzer_start();
-    for (i = 0; i < noteCount; i++) {
-	    buzzer_set_freq(*(notePitch + i));
-	    sleep(*(timeSig + i));
+    for (numberofBars = 1; numberofBars <= 4; numberofBars++) {
+	    for (counter = 0; counter < noteCount; counter++) {
+		    buzzer_set_freq(*(notePitch + counter));
+		    usleep(noteLength[counter] * 1000000);
+	    }
     }
     buzzer_stop();
 }
-
