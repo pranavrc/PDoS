@@ -19,7 +19,7 @@ int main()
       printf("%d\n", notePitches[counter]); 
    }
 
-   fillNotes(&notePitches[0]);	
+   fillNotes(&notePitches[0], sizeof(notePitches));	
 
    return 0;
 }

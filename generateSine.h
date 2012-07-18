@@ -26,6 +26,6 @@ int buzzer_start(void);
 
 int buzzer_stop();
 
-void fillNotes(int *notePitch);
+void fillNotes(int *notePitch, int notePitchSize);
 
 #endif
