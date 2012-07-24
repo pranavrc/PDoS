@@ -28,4 +28,6 @@ int buzzer_stop();
 
 void fillNotes(int *notePitch, int notePitchSize);
 
+void playNote(int note, float time);
+
 #endif

@@ -157,11 +157,19 @@ void fillNotes(int *notePitch, int notePitchSize)
     }
     
     buzzer_start();
-    for (numberofBars = 1; numberofBars <= 4; numberofBars++) {
+    for (numberofBars = 1; numberofBars <= 1; numberofBars++) {
 	    for (counter = 0; counter < noteCount; counter++) {
 		    buzzer_set_freq(*(notePitch + counter));
 		    usleep(beat[counter] * 1000000);
 	    }
     }
     buzzer_stop();
+}
+
+void playNote(int note, float time)
+{
+	buzzer_start();
+	buzzer_set_freq(note);
+	usleep(time * 1000000);
+	buzzer_stop();
 }
