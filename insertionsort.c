@@ -14,6 +14,7 @@ int *insertionSort(int list[], int length)
 			temp = list[j];
 			list[j] = list[j-1];
 			list[j-1] = temp;
+			playNote(list[j] * SCALING_FACTOR, lengthOfBeat);
 			playNote(list[j - 1] * SCALING_FACTOR, lengthOfBeat);
 			j = j - 1;
 		}
@@ -37,7 +38,8 @@ int main()
 	int k = j;
 	while (j > 0) {
 		srand(time(NULL));
-		unorderedList[k - j] = rand() % j;
+		//unorderedList[k - j] = rand() % j;
+		unorderedList[j] = k - j;
 		j--;
 	}
 	int *orderedListPtr;
