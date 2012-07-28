@@ -30,4 +30,6 @@ void fillNotes(int *notePitch, int notePitchSize);
 
 void playNote(int note, float time);
 
+void populateArray(int* (*function)(int *, int, float));
+
 #endif

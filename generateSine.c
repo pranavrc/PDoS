@@ -173,3 +173,28 @@ void playNote(int note, float time)
 	usleep(time * 1000000);
 	buzzer_stop();
 }
+
+void populateArray(int* (*function)(int *, int, float))
+{
+	int j;
+	float lengthOfBeat;
+	printf("Number of notes: ");
+	scanf("%d", &j);
+	printf("\nLength of each beat(in seconds): ");
+	scanf("%f", &lengthOfBeat);
+	int unorderedList[j];
+	int k = j;
+	while (j > 0) {
+		srand(time(NULL));
+		//unorderedList[k - j] = rand() % j;
+		unorderedList[j] = k - j;
+		j--;
+	}
+	int *orderedListPtr;
+        orderedListPtr = (*function)(unorderedList, sizeof(unorderedList)/sizeof(int), lengthOfBeat);
+	int i;
+	for (i = 0; i < sizeof(unorderedList)/sizeof(int); i++) {
+		printf("%d\t", *(orderedListPtr + i));
+	}
+	printf("\n");
+}

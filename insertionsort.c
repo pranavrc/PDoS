@@ -2,9 +2,8 @@
 #include "generateSine.c"
 
 #define SCALING_FACTOR 200
-float lengthOfBeat;
 
-int *insertionSort(int list[], int length)
+int *insertionSort(int list[], int length, float lengthOfBeat)
 {
 	int i, j, temp;
 
@@ -29,27 +28,7 @@ int *insertionSort(int list[], int length)
 
 int main()
 {
-	int j;
-	printf("Number of notes: ");
-	scanf("%d", &j);
-	printf("\nLength of each beat(in seconds): ");
-	scanf("%f", &lengthOfBeat);
-	int unorderedList[j];
-	int k = j;
-	while (j > 0) {
-		srand(time(NULL));
-		//unorderedList[k - j] = rand() % j;
-		unorderedList[j] = k - j;
-		j--;
-	}
-	int *orderedListPtr;
-        orderedListPtr = insertionSort(unorderedList, sizeof(unorderedList)/sizeof(int));
-	int i;
-	for (i = 0; i < sizeof(unorderedList)/sizeof(int); i++) {
-		printf("%d\t", *(orderedListPtr + i));
-	}
-	printf("\n");
-
+	populateArray(insertionSort);
 	return 0;
 }
 
