@@ -228,7 +228,7 @@ void dumpToFile(int noteList[], int arraySize, float lengthOfBeat, char *filenam
 	}
 
 	for (j = 0; j < arraySize/sizeof(int); j++) {
-		printf("\n%d", noteList[j]);
+		printf("\n%d", noteList[j]); 
 		noteValue[j] = (float)(noteList[j]/44100.00);
 		printf("\n%f", noteValue[j]);
 	}
