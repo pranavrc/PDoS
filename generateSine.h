@@ -8,8 +8,15 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sndfile.h>
+#include <string.h>
 
-#define SAMPLE_RATE   (44100)
+#ifndef		M_PI
+#define		M_PI		3.14159265358979323846264338
+#endif
+
+#define		SAMPLE_RATE			44100
+#define		AMPLITUDE			(1.0 * 0x7F000000)
 #define FRAMES_PER_BUFFER  (64)
 
 static int patestCallback( const void *inputBuffer, void *outputBuffer,
@@ -31,5 +38,7 @@ void fillNotes(int *notePitch, int notePitchSize);
 void playNote(int note, float time);
 
 void populateArray(int* (*function)(int *, int, float));
+
+void dumpToFile(int noteList[], int arraySize, float lengthOfBeat, char *filename);
 
 #endif

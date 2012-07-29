@@ -198,3 +198,54 @@ void populateArray(int* (*function)(int *, int, float))
 	}
 	printf("\n");
 }
+
+void dumpToFile(int noteList[], int arraySize, float lengthOfBeat, char *filename)
+{
+	SNDFILE *file;
+	SF_INFO sfinfo;
+	int SAMPLE_COUNT = SAMPLE_RATE * lengthOfBeat;
+	int j;
+	long int k;
+	int *buffer;
+	int p, q;
+	float noteValue[arraySize/sizeof(int)];
+
+	if (! (buffer = malloc (2 * arraySize * SAMPLE_COUNT * sizeof (int))))
+	{	
+		printf ("Malloc failed.\n");
+		exit (0);
+	}
+
+	memset (&sfinfo, 0, sizeof (sfinfo));
+
+	sfinfo.samplerate	= SAMPLE_RATE;
+	sfinfo.frames		= SAMPLE_COUNT;
+	sfinfo.channels		= 1;
+	sfinfo.format		= (SF_FORMAT_WAV | SF_FORMAT_PCM_24);
+
+	if (! (file = sf_open (filename, SFM_WRITE, &sfinfo)))
+	{	printf ("Error : Not able to open output file.\n");
+	}
+
+	for (j = 0; j < arraySize/sizeof(int); j++) {
+		printf("\n%d", noteList[j]);
+		noteValue[j] = (float)(noteList[j]/44100.00);
+		printf("\n%f", noteValue[j]);
+	}
+
+	for (j = 0; j < (arraySize/sizeof(int)); j++)
+	{
+		p = j * SAMPLE_COUNT;
+		q = (j + 1) * SAMPLE_COUNT;
+
+		for (k = p; k < q; k++) {
+			buffer [k] = AMPLITUDE * sin(noteValue[j] * 2 * k * M_PI);
+		}
+	}
+
+	if (sf_write_int (file, buffer, sfinfo.channels * (arraySize/sizeof(int)) * SAMPLE_COUNT) != sfinfo.channels * SAMPLE_COUNT)
+		puts (sf_strerror (file));
+
+	sf_close (file);
+}
+
