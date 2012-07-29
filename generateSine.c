@@ -185,7 +185,7 @@ void populateArray(int* (*function)(int *, int, float))
 	int unorderedList[j];
 	int k = j;
 	while (j > 0) {
-		srand(time(NULL));
+		//srand(time(NULL));
 		//unorderedList[k - j] = rand() % j;
 		unorderedList[j] = k - j;
 		j--;
